@@ -22,6 +22,13 @@ def ReadBDD():
     password='Scooter90%1',
     database='boris_BDD'
     )
+    cursor = conn.cursor()
+    # Execute a query
+    cursor.execute("SELECT * FROM livres")
+    # Fetch and print the results
+    print(cursor.fetchone())
+    # Close the connection
+    conn.close()
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
