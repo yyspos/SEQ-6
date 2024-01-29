@@ -50,6 +50,23 @@ def ReadBDD():
     </html>
     """
     return render_template_string(template_string, data=data)
+
+@app.route('/paris/')
+def paris():
+    response = requests.get("https://api.openweathermap.org/data/2.5/forecast/daily?q=Paris,fr&cnt=16&appid=bd5e378503939ddaee76f12ad7a97608")
+    content = json.loads(response.content.decode('utf-8'))
+
+    data = [] # On initialise une liste vide
+    for prev in content["list"]:
+        datetime = prev['dt'] * 1000
+        temperature = prev['temp']['day'] - 273.15 # Conversion de Kelvin en °c
+        temperature = round(temperature, 2)
+        data.append([datetime, temperature])
+ 
+    return jsonify({
+      'status': 'ok', 
+      'data': data
+    })
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
