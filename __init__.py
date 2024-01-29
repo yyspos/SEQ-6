@@ -20,7 +20,7 @@ def ReadBDD():
   app.config['MYSQL_DATABASE_HOST'] = 'localhost'
   app.config['MYSQL_DATABASE_USER'] = 'boris'
   app.config['MYSQL_DATABASE_PASSWORD'] = 'Scooter90%1'
-  app.config['MYSQL_DATABASE_DB'] = 'boris_BDD
+  app.config['MYSQL_DATABASE_DB'] = 'boris_BDD'
   mysql.init_app(app)
   cursor = mysql.connect().cursor()
   return "BDD"
