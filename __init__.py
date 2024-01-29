@@ -21,9 +21,11 @@ def hello_world_fr():
 # Création d'une nouvelle route pour la lecture de la BDD
 @app.route('/lecture/')
 def ReadBDD():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM livres').fetchall()
-    conn.close()
+     return "<h2>Route lecture</h2>"
+    
+    #conn = get_db_connection()
+    #posts = conn.execute('SELECT * FROM livres').fetchall()
+    #conn.close()
 
     # Convertit la liste de livre en un format JSON
     # json_posts = [{'id': post['id'], 'title': post['title'], 'content': post['auteur']} for post in posts]
