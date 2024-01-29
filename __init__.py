@@ -1,6 +1,4 @@
-from flask import Flask
-from flask import render_template
-from flask import json
+from flask import Flask, render_template_string
 import sqlite3
 
 app = Flask(__name__)                                                                                                                  
@@ -22,12 +20,37 @@ def ReadBDD():
     data = cursor.fetchall()
     conn.close()
 
-    # Construisez un dictionnaire avec les données
-    json_posts = [{'colonne1': row['id']} for row in data]
-    # Ajoutez d'autres clés au dictionnaire en fonction de la structure de votre base de données
+   # Construisez dynamiquement une chaîne de modèle HTML
+    template_string = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contenu de la base de données</title>
+    </head>
+    <body>
+        <h1>Contenu de la base de données</h1>
+        <table border="1">
+            <tr>
+                <th>Colonne1</th>
+                <th>Colonne2</th>
+                <!-- Ajoutez d'autres en-têtes de colonne selon votre structure de base de données -->
+            </tr>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <!-- Ajoutez d'autres colonnes selon votre structure de base de données -->
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+    </html>
+    """
 
-    # Renvoyez les données au format JSON
-    return jsonify(data=json_posts)
+    # Renvoyez la chaîne de modèle HTML directement
+    return render_template_string(template_string, data=data)
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
