@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import json
-import mysql.connector
+import sqlite3
 
 app = Flask(__name__)                                                                                                                  
                                                                                                                                        
@@ -16,14 +16,12 @@ def hello_world_fr():
 # Création d'une nouvelle route pour la lecture de la BDD
 @app.route('/lecture/')
 def ReadBDD():
-  mysql = MySQL()
-  app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-  app.config['MYSQL_DATABASE_USER'] = 'boris'
-  app.config['MYSQL_DATABASE_PASSWORD'] = 'Scooter90%1'
-  app.config['MYSQL_DATABASE_DB'] = 'boris_BDD'
-  mysql.init_app(app)
-  cursor = mysql.connect().cursor()
-  return "BDD"
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM livres;')
+    data = cursor.fetchall()
+    conn.close()
+    return "BDD"
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
