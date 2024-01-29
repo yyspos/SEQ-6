@@ -16,14 +16,14 @@ def hello_world_fr():
 # Création d'une nouvelle route pour la lecture de la BDD
 @app.route('/lecture/')
 def ReadBDD():
-    conn = mysql.connector.connect(host='localhost',user='boris',password='Scooter90%1',database='boris_BDD')
-    cursor = conn.cursor()
-    # Execute a query
-    cursor.execute("SELECT * FROM livres")
-    # Fetch and print the results
-    print(cursor.fetchone())
-    # Close the connection
-    conn.close()
+  mysql = MySQL()
+  app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+  app.config['MYSQL_DATABASE_USER'] = 'boris'
+  app.config['MYSQL_DATABASE_PASSWORD'] = 'Scooter90%1'
+  app.config['MYSQL_DATABASE_DB'] = 'boris_BDD
+  mysql.init_app(app)
+  cursor = mysql.connect().cursor()
+  return "BDD"
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
