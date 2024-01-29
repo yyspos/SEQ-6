@@ -21,9 +21,12 @@ def ReadBDD():
     cursor.execute('SELECT * FROM livres;')
     data = cursor.fetchall()
     conn.close()
-    # Convertit la liste de livre en un format JSON
-    json_posts = [{'id': post['id'], 'title': post['title'], 'content': post['auteur']} for post in posts]
-    # Renvoie la réponse JSON
+
+    # Construisez un dictionnaire avec les données
+    json_posts = [{'colonne1': row[0], 'colonne2': row[1]} for row in data]
+    # Ajoutez d'autres clés au dictionnaire en fonction de la structure de votre base de données
+
+    # Renvoyez les données au format JSON
     return jsonify(data=json_posts)
                                                                                                                                        
 if __name__ == "__main__":
