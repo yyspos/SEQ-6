@@ -16,12 +16,7 @@ def hello_world_fr():
 # Création d'une nouvelle route pour la lecture de la BDD
 @app.route('/lecture/')
 def ReadBDD():
-    conn = mysql.connector.connect(
-    host='localhost',
-    user='boris',
-    password='Scooter90%1',
-    database='boris_BDD'
-    )
+    conn = mysql.connector.connect(host='localhost',user='boris',password='Scooter90%1',database='boris_BDD')
     cursor = conn.cursor()
     # Execute a query
     cursor.execute("SELECT * FROM livres")
