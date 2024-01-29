@@ -53,15 +53,15 @@ def ReadBDD():
     """
     return render_template_string(template_string, data=data)
 
-@app.route('/paris/')
-def paris():
-    response = requests.get("https://api.openweathermap.org/data/2.5/forecast/daily?q=Paris,fr&cnt=16&appid=bd5e378503939ddaee76f12ad7a97608")
+@app.route('/api/meteo/')
+def meteo():
+    response = requests.get("https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx")
     content = json.loads(response.content.decode('utf-8'))
 
     data = [] # On initialise une liste vide
     for prev in content["list"]:
         datetime = prev['dt'] * 1000
-        temperature = prev['temp']['day'] - 273.15 # Conversion de Kelvin en °c
+        temperature = prev['main']['temp'] - 273.15 # Conversion de Kelvin en °c
         temperature = round(temperature, 2)
         data.append([datetime, temperature])
  
