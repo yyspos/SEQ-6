@@ -23,33 +23,32 @@ def ReadBDD():
    # Construisez dynamiquement une chaîne de modèle HTML
     template_string = """
     <!DOCTYPE html>
-    <html lang="en">
+    <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contenu de la base de données</title>
+        <title>Bibliotheque</title>
     </head>
     <body>
         <h1>Contenu de la base de données</h1>
         <table border="1">
             <tr>
-                <th>Colonne1</th>
-                <th>Colonne2</th>
-                <!-- Ajoutez d'autres en-têtes de colonne selon votre structure de base de données -->
+                <th>ID</th>
+                <th>DATE</th>
+                <th>TITRE</th>
+                <th>AUTEUR</th>
             </tr>
             {% for row in data %}
             <tr>
                 <td>{{ row[0] }}</td>
                 <td>{{ row[1] }}</td>
-                <!-- Ajoutez d'autres colonnes selon votre structure de base de données -->
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
             </tr>
             {% endfor %}
         </table>
     </body>
     </html>
     """
-
-    # Renvoyez la chaîne de modèle HTML directement
     return render_template_string(template_string, data=data)
                                                                                                                                        
 if __name__ == "__main__":
