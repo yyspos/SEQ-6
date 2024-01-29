@@ -21,7 +21,7 @@ def hello_world_fr():
 # Création d'une nouvelle route pour la lecture de la BDD
 @app.route('/lecture/')
 def ReadBDD():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('./database.db')
     #return "<h2>Route lecture</h2>"
     #conn = get_db_connection()
     #posts = conn.execute('SELECT * FROM livres').fetchall()
