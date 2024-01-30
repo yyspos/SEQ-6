@@ -54,7 +54,7 @@ def ReadBDD():
     """
     return render_template_string(template_string, data=data)
 
-@app.route('/api/meteo/')
+@app.route('/paris/')
 def meteo():
     response = urlopen('https://api.openweathermap.org/data/2.5/forecast/daily?q=Paris,fr&cnt=16&appid=bd5e378503939ddaee76f12ad7a97608')
     raw_content = response.read()
