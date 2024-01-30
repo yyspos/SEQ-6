@@ -12,7 +12,7 @@ def hello_world():
 
 @app.route('/fr/')
 def hello_world_fr():
-    return "<h2>Bonjour tout le monde !</h2>"
+    return "<h2>Bonjour tout le monde 2!</h2>"
 
 # Création d'une nouvelle route pour la lecture de la BDD
 @app.route('/lecture/')
