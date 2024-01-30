@@ -62,7 +62,7 @@ def meteo():
     first_list_element = json_content['list'][0] if json_content and 'list' in json_content and json_content['list'] else None
     dt_value = first_list_element.get('dt') if first_list_element else None
     temp_day_value = first_list_element['temp']['day'] if first_list_element and 'temp' in first_list_element and 'day' in first_list_element['temp'] else None
-    return jsonify(dt_value=dt_value)
+    return jsonify(dt_value=dt_value, temp_day_value=temp_day_value)
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
