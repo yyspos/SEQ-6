@@ -63,9 +63,8 @@ def meteo():
     for list_element in json_content.get('list', []):
         dt_value = list_element.get('dt')
         temp_day_value = list_element.get('temp', {}).get('day')
-        results.append({'dt': dt_value, 'temp_day': temp_day_value})
+        results.append({'Jour': dt_value, 'temp': temp_day_value})
     return jsonify( results=results)
-
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
