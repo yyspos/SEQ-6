@@ -57,7 +57,7 @@ def ReadBDD():
 @app.route('/api/meteo/')
 def meteo():
     response = urlopen('https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx')
-    return f'Response status code: {response.getcode()}
+    return 'Response status code: {response.getcode()}
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
