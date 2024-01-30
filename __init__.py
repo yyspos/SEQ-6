@@ -59,16 +59,9 @@ def meteo():
     response = urlopen('https://api.openweathermap.org/data/2.5/forecast/daily?q=Paris,fr&cnt=16&appid=bd5e378503939ddaee76f12ad7a97608')
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
-    if json_content and 'data' in json_content:
-        user_info = {
-            'name': json_content['data'].get('dt')
-        }
-    else:
-        user_info = {}
-  
-   return jsonify(response_code=response.status, user_info=user_info)
-
-
+    dt_value = json_content['list'][0].get('dt') if json_content and 'list' in json_content and json_content['list'] else None
+    # Renvoyer la valeur de 'dt' au format JSON
+    return jsonify(response_code=response.status, dt_value=dt_value)
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
