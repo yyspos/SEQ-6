@@ -1,7 +1,7 @@
 from flask import Flask, render_template_string, render_template, jsonify
 from flask import render_template
 from flask import json
-import requests
+import http.client
 import sqlite3
 
 app = Flask(__name__)                                                                                                                  
@@ -56,20 +56,10 @@ def ReadBDD():
 
 @app.route('/api/meteo/')
 def meteo():
-    response = requests.get("https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx")
-    content = json.loads(response.content.decode('utf-8'))
-
-    data = [] # On initialise une liste vide
-    for prev in content["list"]:
-        datetime = prev['dt'] * 1000
-        temperature = prev['main']['temp'] - 273.15 # Conversion de Kelvin en °c
-        temperature = round(temperature, 2)
-        data.append([datetime, temperature])
- 
-    return jsonify({
-      'status': 'ok', 
-      'data': data
-    })
+    connection = http.client.HTTPSConnection('https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx')
+    connection.request('GET', '/')
+    response = connection.getresponse()
+    return f'Response status code: {response.status}'
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
