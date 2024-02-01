@@ -27,7 +27,7 @@
       google.charts.setOnLoadCallback(drawBackgroundColor);
 
       function drawBackgroundColor() {
-        fetch('/rapport/')
+        fetch('/paris/')
           .then(response => response.text())
           .then(data => {
             alert(data.substring(12, data.length - 21));
