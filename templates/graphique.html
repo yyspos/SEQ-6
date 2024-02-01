@@ -32,7 +32,7 @@
           .then(data => {
             alert(data.substring(11, data.length - 2));
             var parsedData = JSON.parse(data.substring(11, data.length - 2));
-            var data = new google.visualization.DataTable();
+            var data = new google.visualization.DataTable(parsedData);
             data.addColumn('number', 'X');
             data.addColumn('number', 'Temp');
             data.addRows(parsedData);
