@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 @app.route('/fiche_client/<int:post_id>')
-def ReadBDD():
+def Readfiche():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
