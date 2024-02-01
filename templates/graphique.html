@@ -30,7 +30,7 @@
         fetch('/paris/')
           .then(response => response.text())
           .then(data => {
-            alert(data.substring(12, data.length - 21));
+            alert(data.substring(11, data.length - 21));
             var parsedData = JSON.parse(data.substring(11, data.length - 21));
             var data = new google.visualization.DataTable();
             data.addColumn('number', 'X');
