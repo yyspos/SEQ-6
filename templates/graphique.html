@@ -1,69 +1,51 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Graphique</title>
+    <title>Flask</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <style>
-      #chart_div {
-        width: 100%;
-        height: 100%;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #f1f8e9;
-      }
-    </style>
-  </head>  
+ </head>  
 
-  <body>
+<body>
     <div id="chart_div"></div>
-    <script>
-      google.charts.load('current', {packages: ['corechart', 'line']});
-      google.charts.setOnLoadCallback(drawBackgroundColor);
+ 
+<script>
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBackgroundColor);
 
-      function drawBackgroundColor() {
-        fetch('/paris/')
-          .then(response => response.text())
-          .then(data => {
-            alert(data.substring(11, data.length - 2));
-            var parsedData = JSON.parse(data.substring(11, data.length - 2));
-            var data = new google.visualization.arrayToDataTable((parsedData);
-            data.addColumn('number', 'X');
-            data.addColumn('number', 'Temp');
-            data.addRows(parsedData);
 
+function drawBackgroundColor() {
+      function drawChart() {
+    // Exemple de récupération de données depuis une API (utilisez votre propre logique)
+    fetch('/paris/')
+        .then(response => response.json())
+        .then(data => {
+            // Convertir les données récupérées en un tableau utilisable par Google Charts
+            var dataTable = new google.visualization.DataTable();
+            dataTable.addColumn('string', 'Date');
+            dataTable.addColumn('number', 'Valeur');
+
+            // Remplacer les données ci-dessous par vos propres données dynamiques
+            data.forEach(entry => {
+                dataTable.addRow([entry.date, entry.value]);
+            });
+
+            // Configurer les options du graphique en ligne
             var options = {
-              hAxis: {
-                title: 'Date',
-                textStyle: {
-                  color: '#333',
-                  fontSize: 14,
-                  bold: true
-                }
-              },
-              vAxis: {
-                title: 'Température',
-                textStyle: {
-                  color: '#333',
-                  fontSize: 14,
-                  bold: true
-                }
-              },
-              backgroundColor: 'transparent'
+                title: 'Évolution des valeurs au fil du temps',
+                curveType: 'function',  // 'function' pour une courbe lisse
+                legend: { position: 'bottom' }
             };
 
+            // Créer une instance du graphique en ligne
             var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-          })
-          .catch((error) => {
-            console.error('Erreur:', error);
-          });
-      }
-    </script>
+
+            // Dessiner le graphique avec les données et les options
+            chart.draw(dataTable, options);
+        })
+        .catch(error => console.error('Erreur lors de la récupération des données :', error));
+}
+    
   </body>
+  
 </html>
