@@ -70,22 +70,6 @@ def meteo():
 def mongraphique():
     return render_template("graphique.html")
 
-@app.route('/api/meteo/')
-def meteo2():
-    response = requests.get("https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx")
-    content = json.loads(response.content.decode('utf-8'))
-
-    data = [] # On initialise une liste vide
-    for prev in content["list"]:
-        datetime = prev['dt'] * 1000
-        temperature = prev['main']['temp'] - 273.15 # Conversion de Kelvin en °c
-        temperature = round(temperature, 2)
-        data.append([datetime, temperature])
- 
-    return jsonify({
-      'status': 'ok', 
-      'data': data
-    })
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
