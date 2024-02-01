@@ -72,24 +72,17 @@ def mongraphique():
 
 @app.route('/lecture2/')
 def ReadBDD():
-    # Connectez-vous à la base de données
-connection = sqlite3.connect('database.db')
-cursor = connection.cursor()
-
-# Sélectionnez toutes les lignes de la table 'clients'
-cursor.execute("SELECT * FROM clients")
-rows = cursor.fetchall()
-
-# Affichez les résultats
-for row in rows:
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM clients;')
+    data = cursor.fetchall()
+    for row in rows:
     print("ID:", row[0])
     print("Nom:", row[1])
     print("Prénom:", row[2])
     print("Adresse:", row[3])
     print("------------------------")
-
-# Fermez la connexion
-connection.close()
+    conn.close()
 
                                                                                                                                        
 if __name__ == "__main__":
