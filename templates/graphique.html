@@ -4,48 +4,49 @@
     <meta charset="UTF-8" />
     <title>Flask</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- </head>  
+  </head>  
 
-<body>
+  <body>
     <div id="chart_div"></div>
- 
-<script>
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBackgroundColor);
 
+    <script>
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(drawBackgroundColor);
 
-function drawBackgroundColor() {
-      function drawChart() {
-    // Exemple de récupération de données depuis une API (utilisez votre propre logique)
-    fetch('/paris/')
-        .then(response => response.json())
-        .then(data => {
-            // Convertir les données récupérées en un tableau utilisable par Google Charts
-            var dataTable = new google.visualization.DataTable();
-            dataTable.addColumn('string', 'Date');
-            dataTable.addColumn('number', 'Valeur');
+      function drawBackgroundColor() {
+        function drawChart() {
+          // Exemple de récupération de données depuis une API (utilisez votre propre logique)
+          fetch('/paris/')
+            .then(response => response.json())
+            .then(data => {
+              // Convertir les données récupérées en un tableau utilisable par Google Charts
+              var dataTable = new google.visualization.DataTable();
+              dataTable.addColumn('string', 'Date');
+              dataTable.addColumn('number', 'Valeur');
 
-            // Remplacer les données ci-dessous par vos propres données dynamiques
-            data.forEach(entry => {
+              // Remplacer les données ci-dessous par vos propres données dynamiques
+              data.forEach(entry => {
                 dataTable.addRow([entry.date, entry.value]);
-            });
+              });
 
-            // Configurer les options du graphique en ligne
-            var options = {
+              // Configurer les options du graphique en ligne
+              var options = {
                 title: 'Évolution des valeurs au fil du temps',
                 curveType: 'function',  // 'function' pour une courbe lisse
                 legend: { position: 'bottom' }
-            };
+              };
 
-            // Créer une instance du graphique en ligne
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+              // Créer une instance du graphique en ligne
+              var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
-            // Dessiner le graphique avec les données et les options
-            chart.draw(dataTable, options);
-        })
-        .catch(error => console.error('Erreur lors de la récupération des données :', error));
-}
-    
+              // Dessiner le graphique avec les données et les options
+              chart.draw(dataTable, options);
+            })
+            .catch(error => console.error('Erreur lors de la récupération des données :', error));
+        }
+
+        drawChart();  // Appel de la fonction drawChart ici
+      }
+    </script>
   </body>
-  
 </html>
