@@ -5,7 +5,16 @@ from urllib.request import urlopen
 import sqlite3
 
 app = Flask(__name__)                                                                                                                  
-                                                                                                                                       
+
+@app.route('/consultation/')
+def ReadBDD():
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM clients;')
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('read_data.html', data=data)
+
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
@@ -69,21 +78,6 @@ def meteo():
 @app.route("/rapport/")
 def mongraphique():
     return render_template("graphique.html")
-
-@app.route('/lecture2/')
-def ReadBDD():
-    conn = sqlite3.connect('database.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients;')
-    data = cursor.fetchall()
-    for row in data:
-        print("ID:", row[0])
-        print("Nom:", row[1])
-        print("Prénom:", row[2])
-        print("Adresse:", row[3])
-        print("------------------------")
-    conn.close()
-    return "Données affichées dans la console Flask"
 
                                                                                                                                        
 if __name__ == "__main__":
