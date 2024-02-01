@@ -76,13 +76,14 @@ def ReadBDD():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients;')
     data = cursor.fetchall()
-    for row in rows:
-    print("ID:", row[0])
-    print("Nom:", row[1])
-    print("Prénom:", row[2])
-    print("Adresse:", row[3])
-    print("------------------------")
+    for row in data:
+        print("ID:", row[0])
+        print("Nom:", row[1])
+        print("Prénom:", row[2])
+        print("Adresse:", row[3])
+        print("------------------------")
     conn.close()
+    return "Données affichées dans la console Flask"
 
                                                                                                                                        
 if __name__ == "__main__":
