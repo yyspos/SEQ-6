@@ -13,40 +13,48 @@
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawBackgroundColor);
 
-      function drawBackgroundColor() {
-        function drawChart() {
-          // Exemple de récupération de données depuis une API (utilisez votre propre logique)
-          fetch('/paris/')
-            .then(response => response.json())
-            .then(data => {
-              // Convertir les données récupérées en un tableau utilisable par Google Charts
-              var dataTable = new google.visualization.DataTable();
-              dataTable.addColumn('string', 'Date');
-              dataTable.addColumn('number', 'Valeur');
+     function drawBackgroundColor() {
+  function drawChart(data) {
+    // Vérifier si data.results est un tableau
+    if (!Array.isArray(data.results)) {
+      console.error('Les données ne sont pas sous forme de tableau.');
+      return;
+    }
 
-              // Remplacer les données ci-dessous par vos propres données dynamiques
-              data.forEach(entry => {
-                dataTable.addRow([entry.date, entry.value]);
-              });
+    // Convertir les données récupérées en un tableau utilisable par Google Charts
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn('string', 'Date');
+    dataTable.addColumn('number', 'Valeur');
 
-              // Configurer les options du graphique en ligne
-              var options = {
-                title: 'Évolution des valeurs au fil du temps',
-                curveType: 'function',  // 'function' pour une courbe lisse
-                legend: { position: 'bottom' }
-              };
+    // Remplacer les données ci-dessous par vos propres données dynamiques
+    data.results.forEach(entry => {
+      // Convertir la timestamp en une date lisible (vous pouvez ajuster cela en fonction de vos besoins)
+      var date = new Date(entry.Jour * 1000); // Multiplié par 1000 pour convertir les secondes en millisecondes
+      dataTable.addRow([date.toLocaleDateString(), entry.temp]);
+    });
 
-              // Créer une instance du graphique en ligne
-              var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    // Configurer les options du graphique en ligne
+    var options = {
+      title: 'Évolution des valeurs au fil du temps',
+      curveType: 'function',  // 'function' pour une courbe lisse
+      legend: { position: 'bottom' }
+    };
 
-              // Dessiner le graphique avec les données et les options
-              chart.draw(dataTable, options);
-            })
-            .catch(error => console.error('Erreur lors de la récupération des données :', error));
-        }
+    // Créer une instance du graphique en ligne
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
-        drawChart();  // Appel de la fonction drawChart ici
-      }
+    // Dessiner le graphique avec les données et les options
+    chart.draw(dataTable, options);
+  }
+
+  // Exemple de récupération de données depuis une API (utilisez votre propre logique)
+  fetch('/paris/')
+    .then(response => response.json())
+    .then(data => {
+      drawChart(data); // Appeler la fonction drawChart avec les données récupérées
+    })
+    .catch(error => console.error('Erreur lors de la récupération des données :', error));
+}
     </script>
   </body>
 </html>
