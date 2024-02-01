@@ -72,16 +72,24 @@ def mongraphique():
 
 @app.route('/lecture2/')
 def ReadBDD():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM clients').fetchall()
-    conn.close()
+    # Connectez-vous à la base de données
+connection = sqlite3.connect('database.db')
+cursor = connection.cursor()
 
-    # Convertit la liste de livre en un format JSON
-    json_posts = [{'id': post['id'], 'Nom': post['nom'], 'Prenom': post['prenom'], 'Adresse': post['adresse']} for post in posts]
+# Sélectionnez toutes les lignes de la table 'clients'
+cursor.execute("SELECT * FROM clients")
+rows = cursor.fetchall()
 
-    # Renvoie la réponse JSON
-    return jsonify(posts=json_posts)
+# Affichez les résultats
+for row in rows:
+    print("ID:", row[0])
+    print("Nom:", row[1])
+    print("Prénom:", row[2])
+    print("Adresse:", row[3])
+    print("------------------------")
 
+# Fermez la connexion
+connection.close()
 
                                                                                                                                        
 if __name__ == "__main__":
