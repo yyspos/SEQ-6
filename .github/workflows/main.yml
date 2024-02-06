@@ -20,14 +20,20 @@ jobs:
       - name: Copie des fichiers sur le serveur
         run: |
           git clone https://github.com/OpenRSI/flask_hello_world.git
-          rsync -r ./flask_hello_world/ ./flask33
-          rm -rf ./flask_hello_world
-          # Check the exit status of the rsync command
-          if [ $? -eq 0 ]; then
-            echo "Copy successful"
+          # Vérifier si le répertoire de destination existe
+          if [ -d ./flask33 ]; then
+            rsync -r ./flask_hello_world/ ./flask33
+            rm -rf ./flask_hello_world
+            # Vérifier le code de sortie de la commande rsync
+            if [ $? -eq 0 ]; then
+              echo "Copie réussie"
+            else
+              echo "Échec de la copie"
+              exit 1  # Quitter avec un code d'erreur
+            fi
           else
-            echo "Copy failed"
-            exit 1  # Exit with an error code
+            echo "Le répertoire de destination n'existe pas"
+            exit 1  # Quitter avec un code d'erreur
           fi
   Restart:
     needs: Copy
