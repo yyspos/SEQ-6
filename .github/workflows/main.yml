@@ -22,6 +22,13 @@ jobs:
           git clone https://github.com/OpenRSI/flask_hello_world.git
           rsync -r ./flask_hello_world/ ./flask3
           rm -rf ./flask_hello_world
+          # Check the exit status of the rsync command
+          if [ $? -eq 0 ]; then
+            echo "Copy successful"
+          else
+            echo "Copy failed"
+            exit 1  # Exit with an error code
+          fi
   Restart:
     needs: Copy
     runs-on: ubuntu-latest
