@@ -1,10 +1,10 @@
 name: Industrialisation continue sur le serveur Alwaysdata
 on: push
 jobs:
-  deploy:
+  SSH:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy Flask app
+      - name: Connexion avec le serveur
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_DNS }}
