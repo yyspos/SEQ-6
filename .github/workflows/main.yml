@@ -20,7 +20,7 @@ jobs:
       - name: Copie des fichiers sur le serveur
         run: |
           git clone https://github.com/OpenRSI/flask_hello_world.git
-          rsync -r ./flask_hello_world/ ./flask3
+          rsync -r ./flask_hello_world/ ./flask33
           rm -rf ./flask_hello_world
           # Check the exit status of the rsync command
           if [ $? -eq 0 ]; then
