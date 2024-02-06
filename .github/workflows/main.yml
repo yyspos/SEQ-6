@@ -21,19 +21,12 @@ jobs:
         run: |
           git clone https://github.com/OpenRSI/flask_hello_world.git
           # Vérifier si le répertoire de destination existe
-          if [ -d ./flask33 ]; then
-            rsync -r ./flask_hello_world/ ./flask33
+          if [ -d ./flask3 ]; then
+            rsync -r ./flask_hello_world/ ./flask3
             rm -rf ./flask_hello_world
-            # Vérifier le code de sortie de la commande rsync
-            if [ $? -eq 0 ]; then
-              echo "Copie réussie"
-            else
-              echo "Échec de la copie"
-              exit 1  # Quitter avec un code d'erreur
-            fi
           else
             echo "Le répertoire de destination n'existe pas"
-            exit 1  # Quitter avec un code d'erreur
+            exit 1
           fi
   Restart:
     needs: Copy
