@@ -21,7 +21,7 @@ jobs:
         run: |
           git clone https://github.com/OpenRSI/flask_hello_world.git
           # Vérifier si le répertoire de destination existe
-          if [ -d ./flask3 ]; then
+          if [ "$(ls -A ./flask3)" ]; then
             rsync -r ./flask_hello_world/ ./flask3
             rm -rf ./flask_hello_world
           else
