@@ -17,18 +17,24 @@ jobs:
     needs: Connexion
     runs-on: ubuntu-latest
     steps:
-      - name: Copie des fichiers sur le serveur
-        run: |
-          pwd
-          git clone https://github.com/OpenRSI/flask_hello_world.git
-          # Vérifier si le répertoire de destination existe
-          if [ "$(ls -A ./flask3)" ]; then
-            rsync -r ./flask_hello_world/ ./flask3
-            rm -rf ./flask_hello_world
-          else
-            echo "Le répertoire de destination n'existe pas"
-            exit 1
-          fi
+      - name: Connexion SSH avec le serveur
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd $HOME/www/
+            git clone https://github.com/OpenRSI/flask_hello_world.git
+            # Vérifier si le répertoire de destination existe
+            if [ "$(ls -A ./flask3)" ]; then
+              rsync -r ./flask_hello_world/ ./flask3
+              rm -rf ./flask_hello_world
+            else
+              echo "Le répertoire de destination n'existe pas"
+              exit 1
+            fi
   Restart:
     needs: Copy
     runs-on: ubuntu-latest
