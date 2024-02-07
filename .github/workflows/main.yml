@@ -42,12 +42,13 @@ jobs:
       - name: Restart Alwaysdata site
         run: |
           curl -X POST --basic --user "${{ secrets.ALWAYSDATA_TOKEN }}:" https://api.alwaysdata.com/v1/site/${{ secrets.ALWAYSDATA_SITE_ID }}/restart/
-          # Vérifier le code de sortie de la commande curl
-          if [ $? -eq 0 ]; then
-            echo "Relance du serveur réussi"
+          # Vérifier le code de réponse HTTP
+          if [ "$response_code" -eq 200 ]; then
+            echo "Redémarrage réussi"
+          elif [ "$response_code" -eq 404 ]; then
+            echo "Erreur 404 : Site non trouvé"
+            exit 1  # Quitter avec un code d'erreur
           else
-            echo "Échec de la relance"
+            echo "Échec du redémarrage avec le code de réponse : $response_code"
             exit 1  # Quitter avec un code d'erreur
           fi
-
-          
