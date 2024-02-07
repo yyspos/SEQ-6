@@ -43,7 +43,7 @@ jobs:
         run: |
           response_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST --basic --user "${{ secrets.ALWAYSDATA_TOKEN }}:" https://api.alwaysdata.com/v1/site/${{ secrets.ALWAYSDATA_SITE_ID }}/restart/)
           # Vérifier le code de réponse HTTP
-          if [ "$response_code" -eq 202 ]; then
+          if [ "$response_code" -eq 204 ]; then
             echo "Redémarrage réussi"
           elif [ "$response_code" -eq 404 ]; then
             echo "Erreur 404 : Site non trouvé"
