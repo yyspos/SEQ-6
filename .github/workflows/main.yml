@@ -48,8 +48,8 @@ jobs:
           elif [ "$response_code" -eq 404 ]; then
             echo "Vous n'avez pas renseigner correctement votre secret ALWAYSDATA_SITE_ID"
             exit 1  # Quitter avec un code d'erreur
-          elif [ "$response_code" -eq 404 ]; then
-            echo "Vous n'avez pas renseigner correctement votre secret ALWAYSDATA_SITE_ID"
+          elif [ "$response_code" -eq 401 ]; then
+            echo "Vous n'avez pas renseigner correctement votre secret ALWAYSDATA_TOKEN"
           exit 1  # Quitter avec un code d'erreur
           else
             echo "Échec du redémarrage avec le code de réponse : $response_code"
