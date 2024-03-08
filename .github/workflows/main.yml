@@ -7,10 +7,9 @@ jobs:
       - name: Connexion SSH avec le serveur
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_DNS }}
+          host: "ssh-${{ secrets.USERNAME }}.alwaysdata.net"
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd $HOME/www/
   Copy:
@@ -20,19 +19,19 @@ jobs:
       - name: Connexion SSH avec le serveur
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_DNS }}
+          host: "ssh-${{ secrets.USERNAME }}.alwaysdata.net"
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            last_directory=$(basename ${{ runner.workspace }})
             cd $HOME/www/
-            git clone https://github.com/OpenRSI/flask_hello_world.git
+            git clone https://github.com/${{ github.repository }}.git
             # Vérifier si le répertoire de destination existe
             if [ "$(ls -A ./flask)" ]; then
-              rsync -r ./flask_hello_world/ ./flask
-              rm -rf ./flask_hello_world
+              rsync -r ./$last_directory/ ./flask
+              rm -rf ./$last_directory
             else
-              echo "Le répertoire de destination n'existe pas"
+              echo "Le répertoire flask de destination sur votre serveur n'existe pas"
               exit 1
             fi
   Restart:
