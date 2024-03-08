@@ -1,8 +1,7 @@
-from flask import Flask, session, render_template_string, flash,render_template, jsonify, request,redirect, url_for,json
-from flask_wtf import FlaskForm
-from wtforms import StringField,IntegerField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Email, EqualTo, Length
-from wtforms.validators import DataRequired, Email
+from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+from flask import render_template
+from flask import json
+from urllib.request import urlopen
 import sqlite3
 
 app = Flask(__name__)                                                                                                                  
