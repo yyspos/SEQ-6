@@ -57,26 +57,19 @@ def ReadBDD():
     conn.close()
     return render_template('read_data.html', data=data)
 
-@app.route('/ajouter_client', methods=['GET', 'POST'])
-def ajouter_client():    
-    form = ClientForm()
-    if form.validate_on_submit():
-      cursor = mysql.connection.cursor()  
-      query = ("INSERT INTO clients (nom, prenom) VALUES (%s, %s)")
-      cursor.execute(query, (form.nom.data, form.siret.data))
-      row = cursor.rowcount
-      mysql.connection.commit()
-      cursor.close()
-      if row == 1:
-        flash('Ajout avec succès {}!'.format(form.nom.data), 'success')
-        return redirect(url_for('clients'))
-      else:
-        return render_template('ajouter_client.html', form=form)
-    return render_template('ajouter_client.html', form=form)
+@app.route('/enregistrer_client', methods=['POST'])
+def enregistrer_client():
+    nom = request.form['nom']
+    prenom = request.form['prenom']
 
+    # Connexion à la base de données
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
 
-
-
+    # Exécution de la requête SQL pour insérer un nouveau client
+    cursor.execute('INSERT INTO clients (nom, prenom) VALUES (?, ?)', (nom, prenom))
+    conn.commit()
+    conn.close()
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
