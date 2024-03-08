@@ -57,6 +57,10 @@ def ReadBDD():
     conn.close()
     return render_template('read_data.html', data=data)
 
+@app.route('/enregistrer_client', methods=['GET'])
+def formulaire_client():
+    return render_template('formulaire.html')  # afficher le formulaire
+
 @app.route('/enregistrer_client', methods=['POST'])
 def enregistrer_client():
     nom = request.form['nom']
@@ -70,6 +74,7 @@ def enregistrer_client():
     cursor.execute('INSERT INTO clients (nom, prenom) VALUES (?, ?)', (nom, prenom))
     conn.commit()
     conn.close()
+    return redirect('/consultation/')  # Rediriger vers la page d'accueil après l'enregistrement
                                                                                                                                        
 if __name__ == "__main__":
   app.run(debug=True)
