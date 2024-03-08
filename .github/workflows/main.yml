@@ -28,8 +28,8 @@ jobs:
             cd $HOME/www/
             git clone https://github.com/OpenRSI/flask_hello_world.git
             # Vérifier si le répertoire de destination existe
-            if [ "$(ls -A ./flask3)" ]; then
-              rsync -r ./flask_hello_world/ ./flask3
+            if [ "$(ls -A ./flask)" ]; then
+              rsync -r ./flask_hello_world/ ./flask
               rm -rf ./flask_hello_world
             else
               echo "Le répertoire de destination n'existe pas"
