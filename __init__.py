@@ -49,7 +49,7 @@ def Readfiche(post_id):
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
 
-@app.route('/consultation/')
+@app.route('/consultation')
 def ReadBDD():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -57,6 +57,25 @@ def ReadBDD():
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data.html', data=data)
+
+@app.route('/ajouter_client', methods=['GET', 'POST'])
+def ajouter_client():    
+    form = ClientForm()
+    if form.validate_on_submit():
+      cursor = mysql.connection.cursor()  
+      query = ("INSERT INTO clients (nom, prenom) VALUES (%s, %s)")
+      cursor.execute(query, (form.nom.data, form.siret.data))
+      row = cursor.rowcount
+      mysql.connection.commit()
+      cursor.close()
+      if row == 1:
+        flash('Ajout avec succès {}!'.format(form.nom.data), 'success')
+        return redirect(url_for('clients'))
+      else:
+        return render_template('ajouter_client.html', form=form)
+    return render_template('ajouter_client.html', form=form)
+
+
 
 
                                                                                                                                        
