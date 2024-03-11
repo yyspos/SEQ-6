@@ -86,6 +86,9 @@ L'utilité des scripts d'actions (C'est à dire des scripts exécutés lors des 
 ---------------------------------------------------
 Séquence 4 : Créer la base de données sur votre serveur
 ---------------------------------------------------
+Objectif : Créer la base de données SQLite sur votre serveur  
+Difficulté : Faible (~10 minutes)
+---------------------------------------------------
 1° - Connectez vous à votre serveur Alwaysdata en SSH.  
 2° - Depuis de la console SSH, executez la commande suivante : **python3 init_db.py**  
 Votre base de données est à présent opérationnelle sur votre serveur (Le fichier database.db à été créé dans votre répertoire sur le serveur)
@@ -93,6 +96,8 @@ Vous pouvez, si vous le souhaitez, tappez la commande **ls** dans votre console 
 
 LES ROUTES (API)
 -------------------------------------------
+Votre solution est à présent opérationnelle. Vous pouvez testez les routes (API) comme suit :  
+  
 https://{Votre_URL}**/**  
 Pointe sur le fichier helloWorld d'accueil  
 
@@ -114,11 +119,15 @@ API pour enregistrer un nouveau client
 ---------------------------------------------------
 Séquence 5 : Le projet de bibliothèque
 ---------------------------------------------------
+Objectif : Créer une application de biliothèque  
+Difficulté : Moyenne (~180 minutes)
+---------------------------------------------------
 Votre projet consiste à present à concevoir et développer une application de gestion de bibliothèque moderne qui simplifie le processus de prêt et de retour de livres. Les fonctionnalités attendues dans le cadre de ce projet sont les suivantes :  
 •	L’enregistrement et la suppression de livres.  
 •	La recherche de livres disponibles.  
+•	L'emprunt possible d'un livre par un utilisateur.  
 •	La gestion des utilisateurs.  
 •	La gestion des stocks.  
-  
-L'application exploitera des API pour interagir avec la base de données.  
+Votre travail est de modifier votre code afin de répondre aux besoins définis ci-dessus.
+L'application exploitera des API pour interagir avec la base de données et un contrôle d'accès Utilisateur/Administrateur doit être mis en place.  
 L’application pourra être enrichie avec des fonctionnalités supplémentaires telles que des recommandations de livres, des notifications pour les retours en retard, ou encore des rapports statistiques sur l'utilisation des livres pour améliorer l'expérience utilisateur et la gestion de la bibliothèque.  
