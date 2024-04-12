@@ -118,7 +118,21 @@ https://{Votre_URL}**/enregistrer_client**
 API pour enregistrer un nouveau client  
 
 ---------------------------------------------------
-Séquence 5 : Le projet de bibliothèque
+Séquence 5 : Exercices
+---------------------------------------------------
+Objectif : Travailler votre code  
+Difficulté : Moyenne (~60 minutes)
+---------------------------------------------------
+**Exercice 1 : Création d'une nouvelle fonctionnalité**    
+Créer une nouvelle route dans votre application afin de faire une recherche sur la base du nom d'un client.  
+Cette fonctionnalité sera accéssible via la route suivante : **/fiche_nom/**  
+
+**Exercice 2 : Protection**  
+Cette nouvelle route "/fiche_nom/" est soumise à un contrôle d'accès User. C'est à dire différent des login et mot de passe administrateur.  
+Pour accéder à cette fonctionnalité, l'utilisateur sera authentifié sous les login et mot de passe suivant : **user/12345**
+  
+---------------------------------------------------
+Séquence 6 : Le projet de bibliothèque
 ---------------------------------------------------
 Objectif : Créer une application de biliothèque  
 Difficulté : Moyenne (~180 minutes)
