@@ -89,8 +89,8 @@ Séquence 4 : Créer la base de données sur votre serveur
 Objectif : Créer la base de données SQLite sur votre serveur  
 Difficulté : Faible (~10 minutes)
 ---------------------------------------------------
-1° - Connectez vous à votre serveur Alwaysdata en SSH.  
-2° - Depuis de la console SSH, executez la commande suivante : **python3 create_db.py**  
+1° - Connectez vous en SSH à votre serveur Alwaysdata via l'adresse suivante :**ssh-{compte}.alwaysdata.net**. Remarque importante, {compte] est à remplacer par votre compte Alwaysdata. C'est à dire le compte que vous avez utilisé pour renseigner votre secret GitHUB USERNAME.    
+2° - Un fois connecté, pepuis de la console SSH, executez la commande suivante : **python3 create_db.py**  
 Votre base de données est à présent opérationnelle sur votre serveur (Le fichier database.db à été créé dans votre répertoire sur le serveur)
 Vous pouvez, si vous le souhaitez, tappez la commande **ls** dans votre console pour voir la présence de la base de données.
 
