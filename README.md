@@ -74,8 +74,8 @@ Pour utiliser cette Action (CICD.yml), **vous avez besoin de créer des secrets 
 Pour ce projet Métriques, **vous avez 4 secrets à créer** dans votre Repository GitHUB :  
 **USERNAME** = Le login qui est utilisé pour la connexion SSH.  
 **PASSWORD** = Le mot de passe qui est utilisé pour la connexion SSH.  
-**ALWAYSDATA_TOKEN** = Le token est à créer depuis l'interface d'administration Alwaysdata. Cliquez sur votre profil en haut à droite, puis sur 'Profil' puis sur 'Gérer les tokens'. Laissez le champ "Adresses IP autorisées" vide. Dans le cas contraire vous limiteriez les connexions seulement à une adresse IP. Pour le champ Application* mettez "Metriques" par exemple.  
-**ALWAYSDATA_SITE_ID** = Vous trouverez l'ID de votre site depuis l'interface d'administration Alwaysdata dans les paramètres de votre site (dans le titre #XXXXX) XXXXX étant l'ID de votre site. Ne prenez pas le # mais juste les chiffres.  
+**ALWAYSDATA_TOKEN** = Le token est à créer depuis l'interface d'administration Alwaysdata. Cliquez sur votre profil en haut à droite, puis sur 'Profil' puis sur 'Gérer les tokens'. Laissez le champ "Adresses IP autorisées" vide. Dans le cas contraire vous limiteriez les connexions seulement à une adresse IP. Pour le champ Application* mettez "Monprojet" par exemple.  
+**ALWAYSDATA_SITE_ID** = Vous trouverez l'ID de votre site depuis l'interface d'administration Alwaysdata dans les paramètres de votre site, c'est à dire la petite roue crantée à "droite" puis dans le titre #XXXXX. XXXXX étant l'ID de votre site. Ne prenez pas le # mais juste les chiffres.  
   
 Voici une vidéo pour vous expliquer le processus de création de vos secrets dans GitHUB : [Création des secrets](https://youtu.be/pi80zRdrJyQ)  
 Vous pouvez à présent **lancer une action pour mettre en ligne votre solution**.  
