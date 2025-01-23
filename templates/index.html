@@ -1,115 +1,17 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Bibliothèque Moderne</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-
-        header {
-            background-color: #5a67d8;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .search-bar {
-            margin: 20px auto;
-            max-width: 600px;
-        }
-
-        .search-bar input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .search-bar button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            background-color: #5a67d8;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .search-bar button:hover {
-            background-color: #434190;
-        }
-
-        .results {
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-        }
-
-        .book {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 10px;
-            background-color: #fff;
-        }
-
-        .book h3 {
-            margin: 0;
-        }
-
-        .book p {
-            margin: 5px 0;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Bienvenue à la Bibliothèque Moderne</h1>
-    </header>
-    <div class="content">
-        <h2>Recherchez un livre</h2>
-        <div class="search-bar">
-            <form method="GET" action="/">
-                <input type="text" name="query" placeholder="Entrez le nom du livre..." value="{{ query }}" required>
-                <button type="submit">Rechercher</button>
-            </form>
-        </div>
-        {% if books %}
-            <div class="results">
-                <h3>Résultats de la recherche :</h3>
-                {% for book in books %}
-                    <div class="book">
-                        <h3>{{ book['titre'] }}</h3>
-                        <p><strong>Auteur :</strong> {{ book['auteur'] }}</p>
-                        <p><strong>Catégorie :</strong> {{ book['categorie'] }}</p>
-                        <p><strong>ISBN :</strong> {{ book['isbn'] }}</p>
-                        <p><strong>Stock :</strong> {{ book['stock'] }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            {% if query %}
-                <p>Aucun résultat trouvé pour "{{ query }}".</p>
-            {% endif %}
-        {% endif %}
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+<h2>Bienvenue à la Bibliothèque Moderne</h2>
+<form method="GET" action="/">
+    <input type="text" name="query" placeholder="Rechercher un livre..." style="width: 70%; padding: 10px;">
+    <button type="submit" style="padding: 10px;">Rechercher</button>
+</form>
+{% if books %}
+    <h3>Résultats :</h3>
+    <ul>
+        {% for book in books %}
+        <li>{{ book['titre'] }} - {{ book['auteur'] }} ({{ book['categorie'] }})</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
