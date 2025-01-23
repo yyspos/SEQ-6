@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Livre</title>
+</head>
+<body>
+    <h1>Ajouter un Livre</h1>
+    <form action="/livres/ajouter" method="POST">
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" name="titre" required>
+        <br>
+        <label for="auteur">Auteur :</label>
+        <input type="text" id="auteur" name="auteur" required>
+        <br>
+        <label for="categorie">Catégorie :</label>
+        <input type="text" id="categorie" name="categorie">
+        <br>
+        <button type="submit">Ajouter</button>
+    </form>
+</body>
+</html>
