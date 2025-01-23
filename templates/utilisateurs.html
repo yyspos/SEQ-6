@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Gestion des Utilisateurs{% endblock %}
+{% block content %}
+<h2>Gestion des Utilisateurs</h2>
+<table border="1" cellpadding="5" style="width: 100%;">
+    <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Actions</th>
+    </tr>
+    {% for utilisateur in utilisateurs %}
+    <tr>
+        <td>{{ utilisateur['nom'] }}</td>
+        <td>{{ utilisateur['email'] }}</td>
+        <td>{{ utilisateur['role'] }}</td>
+        <td>
+            <a href="/utilisateurs/modifier/{{ utilisateur['id'] }}">Modifier</a>
+            <a href="/utilisateurs/supprimer/{{ utilisateur['id'] }}">Supprimer</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<form method="POST" action="/utilisateurs/ajouter">
+    <h3>Ajouter un Utilisateur</h3>
+    <input type="text" name="nom" placeholder="Nom" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="mot_de_passe" placeholder="Mot de passe" required>
+    <select name="role" required>
+        <option value="Utilisateur">Utilisateur</option>
+        <option value="Administrateur">Administrateur</option>
+    </select>
+    <button type="submit">Ajouter</button>
+</form>
+{% endblock %}
