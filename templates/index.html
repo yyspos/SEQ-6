@@ -3,65 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Bibliothèque Moderne</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-
-        header {
-            background-color: #5a67d8;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #4c51bf;
-            padding: 10px 0;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .search-bar {
-            margin: 20px auto;
-            max-width: 600px;
-        }
-
-        .search-bar input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .search-bar button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            background-color: #5a67d8;
+    <title>Résultats de la recherche</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Résultats de la recherche</h1>
+    </header>
+    <div class="content">
+        <h2>Résultats pour "{{ query }}"</h2>
+        {% if books %}
+            <div class="results">
+                {% for book in books %}
+                    <div class="book">
+                        <h3>{{ book['titre'] }}</h3>
+                        <p><strong>Auteur :</strong> {{ book['auteur'] }}</p>
+                        <p><strong>Catégorie :</strong> {{ book['categorie'] }}</p>
+                        <p><strong>ISBN :</strong> {{ book['isbn'] }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aucun résultat trouvé pour "{{ query }}".</p>
+        {% endif %}
+        <a href="/">Retour à l'accueil</a>
+    </div>
+</body>
+</html>
