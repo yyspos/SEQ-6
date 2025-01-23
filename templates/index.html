@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibliothèque Moderne</title>
+    <title>Accueil - Bibliothèque Moderne</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +22,7 @@
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
 
         nav {
@@ -43,70 +43,25 @@
             text-decoration: underline;
         }
 
-        .hero {
+        .content {
+            padding: 20px;
             text-align: center;
-            padding: 50px 20px;
-            background-color: #edf2f7;
         }
 
-        .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .search-bar {
+            margin: 20px auto;
+            max-width: 600px;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-
-        .hero button {
-            background-color: #5a67d8;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
+        .search-bar input[type="text"] {
+            width: 80%;
+            padding: 10px;
             font-size: 1rem;
-            cursor: pointer;
+            border: 1px solid #ddd;
             border-radius: 5px;
         }
 
-        .hero button:hover {
-            background-color: #434190;
-        }
-
-        footer {
-            background-color: #4c51bf;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Bienvenue à la Bibliothèque Moderne</h1>
-    </header>
-    <nav>
-        <a href="#">Accueil</a>
-        <a href="/catalogue.html">Catalogue</a>
-        <a href="/emprunts.html">Emprunts</a>
-        <a href="/contact.html">Contact</a>
-    </nav>
-    <div class="hero">
-        <h2>Explorez notre collection de livres</h2>
-        <p>Empruntez, découvrez et enrichissez vos connaissances avec notre vaste catalogue.</p>
-        <button onclick="location.href='catalogue.html'">Voir le catalogue</button>
-    </div>
-    <footer>
-        <p>&copy; 2025 Bibliothèque Moderne. Tous droits réservés.</p>
-    </footer>
-</body>
-</html>
-
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #5a67d8;
