@@ -28,10 +28,10 @@ cur.execute("INSERT INTO emprunts (id_utilisateur, id_livre, date_retour_prevue,
 
 # Insertion des données dans la table notifications
 cur.execute("INSERT INTO notifications (id_utilisateur, id_emprunt, message, vu) VALUES (?, ?, ?, ?)", (2, 1, 'Votre emprunt de "Le Petit Prince" est en retard. Merci de le retourner rapidement.', 0))
-cur.execute("INSERT INTO notifications (id_utilisateur, id_emprunt, message, vu) VALUES (?, ?, ?, ?)", (3, 2, 'Merci d’avoir retourné "1984".', 1))
+cur.execute("INSERT INTO notifications (id_utilisateur, id_emprunt, message, vu) VALUES (?, ?, ?, ?)", (3, 2, 'Merci d\'avoir retourné "1984".', 1))
 
 # Insertion des données dans la table rapports
-cur.execute("INSERT INTO rapports (type_rapport, contenu) VALUES (?, ?)", ('Statistique', 'Rapport mensuel d'utilisation des livres.'))
+cur.execute("INSERT INTO rapports (type_rapport, contenu) VALUES (?, ?)", ('Statistique', "Rapport mensuel d'utilisation des livres."))
 cur.execute("INSERT INTO rapports (type_rapport, contenu) VALUES (?, ?)", ('Rappel', 'Liste des livres en retard ce mois-ci.'))
 
 # Validation et fermeture de la connexion
