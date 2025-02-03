@@ -13,6 +13,7 @@ cur = connection.cursor()
 cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Admin', 'admin@example.com', 'password123', 'Administrateur'))
 cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Dupont', 'emilie.dupont@example.com', 'userpassword', 'Utilisateur'))
 cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Leroux', 'lucas.leroux@example.com', 'userpassword', 'Utilisateur'))
+cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Dagare', 'yann.dagare@example.com', 'password123', 'Administrateur'))
 
 
 # Insertion des données dans la table livres
