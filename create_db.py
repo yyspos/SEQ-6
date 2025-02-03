@@ -13,7 +13,7 @@ cur = connection.cursor()
 cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Admin', 'admin@example.com', 'password123', 'Administrateur'))
 cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Dupont', 'emilie.dupont@example.com', 'userpassword', 'Utilisateur'))
 cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Leroux', 'lucas.leroux@example.com', 'userpassword', 'Utilisateur'))
-cur.execute("INSERT INTO utilisateurs (nom, email, mot_de_passe, role) VALUES (?, ?, ?, ?)", ('Dagare', 'yann.dagare@gmail.com', 'password123', 'Administrateur'))
+
 
 # Insertion des données dans la table livres
 cur.execute("INSERT INTO livres (titre, auteur, categorie, isbn, stock) VALUES (?, ?, ?, ?, ?)", ('Le Petit Prince', 'Antoine de Saint-Exupéry', 'Littérature', '9782070612758', 5))
